@@ -16,7 +16,7 @@
       "dotEnv": [".env.development.local", ".env.local", ".env.development", ".env"]
     },
     "test": {
-      "dependsOn": ["^test"],
+      "dependsOn": ["^build"],
       "dotEnv": [".env.test.local", ".env.test", ".env"]
     }
   }
