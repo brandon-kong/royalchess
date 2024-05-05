@@ -6,9 +6,9 @@ This template is designed for applications using a SPA (Single Page Application)
 
 ## Features
 
-- User creation/login/logout/reset password
-- Creating client applications for OAuth
-- OAuth authentication
+-   User creation/login/logout/reset password
+-   Creating client applications for OAuth
+-   OAuth authentication
 
 ## Setup
 
@@ -67,8 +67,8 @@ To authenticate a user, send a POST request to `http://localhost:8000/auth/login
 
 ```json
 {
-  "email": "your_email",
-  "password": "your_password"
+    "email": "your_email",
+    "password": "your_password"
 }
 ```
 
