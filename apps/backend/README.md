@@ -67,8 +67,8 @@ To authenticate a user, send a POST request to `http://localhost:8000/auth/login
 
 ```json
 {
-    "email": "your_email",
-    "password": "your_password"
+  "email": "your_email",
+  "password": "your_password"
 }
 ```
 
@@ -89,4 +89,3 @@ If you find a bug or security vulnerability, please don't hesitate to create an 
 ## Built by
 
 This project was built by [Brandon Kong](https://github.com/brandon-kong).
-
