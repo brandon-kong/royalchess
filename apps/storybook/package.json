@@ -10,10 +10,13 @@
     "dev": "storybook dev -p 6006"
   },
   "dependencies": {
+    "@repo/ui": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@repo/tailwind-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@chromatic-com/storybook": "1.3.3",
     "@storybook/addon-essentials": "^8.0.10",
     "@storybook/addon-interactions": "^8.0.10",
