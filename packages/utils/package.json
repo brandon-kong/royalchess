@@ -5,8 +5,13 @@
   "exports": {
     ".": "./src/index.ts"
   },
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
     "tailwindcss": "^3.4.3"
   },
   "dependencies": {
