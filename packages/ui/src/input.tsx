@@ -6,6 +6,10 @@ import { cn } from '@repo/utils';
 export interface InputProps
     extends React.InputHTMLAttributes<HTMLInputElement> {}
 
+export interface InputWithLabelProps extends InputProps {
+    label?: string;
+}
+
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ({ className, type, ...props }, ref) => {
         return (
@@ -23,11 +27,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 );
 Input.displayName = 'Input';
 
-const InputWithLabel = React.forwardRef<HTMLInputElement, InputProps>(
-    ({ className, name, type, ...props }, ref) => {
+const InputWithLabel = React.forwardRef<HTMLInputElement, InputWithLabelProps>(
+    ({ className, name, label, type, ...props }, ref) => {
         return (
         <div className="flex flex-col gap-1">
-            <Label htmlFor={name}>{props.placeholder}</Label>
+            <Label htmlFor={name}>{label || name || 'Label'}</Label>
             <Input
                 type={type}
                 className={cn('rounded-md', className)}
