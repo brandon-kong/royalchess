@@ -30,15 +30,16 @@ Input.displayName = 'Input';
 const InputWithLabel = React.forwardRef<HTMLInputElement, InputWithLabelProps>(
     ({ className, name, label, type, ...props }, ref) => {
         return (
-        <div className="flex flex-col gap-1">
-            <Label htmlFor={name}>{label || name || 'Label'}</Label>
-            <Input
-                type={type}
-                className={cn('rounded-md', className)}
-                ref={ref}
-                {...props} 
-            />
-        </div>)
+            <div className="flex flex-col gap-1">
+                <Label htmlFor={name}>{label || name || 'Label'}</Label>
+                <Input
+                    type={type}
+                    className={cn('rounded-md', className)}
+                    ref={ref}
+                    {...props}
+                />
+            </div>
+        );
     },
 );
 InputWithLabel.displayName = 'InputWithLabel';

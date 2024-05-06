@@ -17,11 +17,12 @@ export default function LoginForm(): JSX.Element {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}
-        className={'flex flex-col gap-4 w-full'}
+        <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={'flex flex-col gap-4 w-full'}
         >
             <InputWithLabel
-                label='Email'
+                label="Email"
                 type="email"
                 placeholder="Email"
                 {...register('email', { required: true })}
@@ -29,16 +30,16 @@ export default function LoginForm(): JSX.Element {
             {errors.email && <span>Email is required</span>}
 
             <InputWithLabel
-                label='Password'
+                label="Password"
                 type="password"
                 placeholder="Password"
                 {...register('password', { required: true })}
             />
             {errors.password && <span>Password is required</span>}
 
-            <Button 
-            className={'w-full'}
-            type="submit">Log in</Button>
+            <Button className={'w-full'} type="submit">
+                Log in
+            </Button>
         </form>
     );
 }

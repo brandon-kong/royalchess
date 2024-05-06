@@ -104,9 +104,8 @@ export const Disabled: Story = {
 
 export const SocialAuthButtons: Story = {
     render: (args) => (
-        <Fragment
-        >
-            <SocialButton {...args} >
+        <Fragment>
+            <SocialButton {...args}>
                 <img src="/vite.svg" alt="Google" className={'w-6 h-6'} />
                 {args.children} Google
             </SocialButton>

@@ -1,11 +1,11 @@
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from 'tailwind-merge';
 
 interface TypographyProps extends React.HTMLAttributes<HTMLParagraphElement> {
-    children?: React.ReactNode
+    children?: React.ReactNode;
 }
 
 interface TypographyHProps extends React.HTMLAttributes<HTMLHeadingElement> {
-    children?: React.ReactNode
+    children?: React.ReactNode;
 }
 
 export function LandingH1({ children, className, ...props }: TypographyHProps) {
@@ -14,13 +14,13 @@ export function LandingH1({ children, className, ...props }: TypographyHProps) {
             className={twMerge(
                 'text-6xl font-semibold',
                 'tracking-tighter leading-tight',
-                className
+                className,
             )}
             {...props}
         >
             {children}
         </h1>
-    )
+    );
 }
 
 export function H1({ children, className, ...props }: TypographyHProps) {
@@ -29,13 +29,13 @@ export function H1({ children, className, ...props }: TypographyHProps) {
             className={twMerge(
                 'text-5xl font-semibold',
                 'tracking-tight leading-tight',
-                className
+                className,
             )}
             {...props}
         >
             {children}
         </h1>
-    )
+    );
 }
 
 export function H2({ children, className, ...props }: TypographyHProps) {
@@ -44,13 +44,13 @@ export function H2({ children, className, ...props }: TypographyHProps) {
             className={twMerge(
                 'text-4xl font-semibold',
                 'tracking-tight',
-                className
+                className,
             )}
             {...props}
         >
             {children}
         </h2>
-    )
+    );
 }
 
 export function H3({ children, className, ...props }: TypographyHProps) {
@@ -59,13 +59,13 @@ export function H3({ children, className, ...props }: TypographyHProps) {
             className={twMerge(
                 'text-2xl font-semibold',
                 'tracking-tighter',
-                className
+                className,
             )}
             {...props}
         >
             {children}
         </h3>
-    )
+    );
 }
 
 export function H4({ children, className, ...props }: TypographyHProps) {
@@ -76,7 +76,7 @@ export function H4({ children, className, ...props }: TypographyHProps) {
         >
             {children}
         </h4>
-    )
+    );
 }
 
 export function P({ children, className, ...props }: TypographyProps) {
@@ -84,7 +84,7 @@ export function P({ children, className, ...props }: TypographyProps) {
         <p className={twMerge('text-inherit', className)} {...props}>
             {children}
         </p>
-    )
+    );
 }
 
 export function Subtitle({ children, className, ...props }: TypographyProps) {
@@ -93,11 +93,11 @@ export function Subtitle({ children, className, ...props }: TypographyProps) {
             className={twMerge(
                 'text-lg font-medium tracking-wider',
                 'uppercase',
-                className
+                className,
             )}
             {...props}
         >
             {children}
         </p>
-    )
+    );
 }

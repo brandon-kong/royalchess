@@ -47,14 +47,9 @@ export const Disabled: Story = {
 };
 
 export const WithLabel: Story = {
-    render: (args) => (
-        <InputWithLabel
-            {...args}
-            label="Label"
-        />
-    ),
+    render: (args) => <InputWithLabel {...args} label="Label" />,
     args: {
-        "placeholder": "Type something...",
-        label: "Label",
-    }
+        placeholder: 'Type something...',
+        label: 'Label',
+    },
 };

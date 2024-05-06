@@ -14,7 +14,7 @@ const buttonVariants = cva(
                 destructive:
                     'bg-destructive text-destructive-foreground hover:bg-destructive/90',
                 outline:
-                'border border-neutral-300 text-black bg-background hover:bg-accent hover:border-black hover:text-accent-foreground',
+                    'border border-neutral-300 text-black bg-background hover:bg-accent hover:border-black hover:text-accent-foreground',
                 secondary:
                     'bg-secondary text-secondary-foreground hover:bg-secondary/80',
                 ghost: 'hover:bg-accent hover:text-accent-foreground',
@@ -55,20 +55,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 Button.displayName = 'Button';
 
-const ButtonGroup = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-    ({ className, ...props }, ref) => {
-        return (
-            <div
-                className={cn(
-                    'flex gap-2',
-                    className,
-                )}
-                ref={ref}
-                {...props}
-            />
-        );
-    },
-);
+const ButtonGroup = React.forwardRef<
+    HTMLDivElement,
+    React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => {
+    return <div className={cn('flex gap-2', className)} ref={ref} {...props} />;
+});
 ButtonGroup.displayName = 'ButtonGroup';
 
 const ButtonIcon = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -76,7 +68,10 @@ const ButtonIcon = React.forwardRef<HTMLButtonElement, ButtonProps>(
         const Comp = asChild ? Slot : 'button';
         return (
             <Comp
-                className={cn(buttonVariants({ variant, size, className }), 'flex items-center justify-center')}
+                className={cn(
+                    buttonVariants({ variant, size, className }),
+                    'flex items-center justify-center',
+                )}
                 ref={ref}
                 {...props}
             />
@@ -89,7 +84,10 @@ const SocialButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({ className, size, asChild = false, ...props }, ref) => {
         return (
             <Button
-                className={cn('flex items-center justify-center gap-2', className)}
+                className={cn(
+                    'flex items-center justify-center gap-2',
+                    className,
+                )}
                 variant={'outline'}
                 size={size}
                 ref={ref}
@@ -98,6 +96,5 @@ const SocialButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         );
     },
 );
-
 
 export { Button, ButtonGroup, ButtonIcon, SocialButton, buttonVariants };
