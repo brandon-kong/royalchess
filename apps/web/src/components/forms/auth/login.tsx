@@ -21,13 +21,15 @@ export default function LoginForm(): JSX.Element {
         className={'flex flex-col gap-4 w-full'}
         >
             <InputWithLabel
+                label='Email'
                 type="email"
                 placeholder="Email"
                 {...register('email', { required: true })}
             />
             {errors.email && <span>Email is required</span>}
 
-            <Input
+            <InputWithLabel
+                label='Password'
                 type="password"
                 placeholder="Password"
                 {...register('password', { required: true })}
@@ -36,7 +38,7 @@ export default function LoginForm(): JSX.Element {
 
             <Button 
             className={'w-full'}
-            type="submit">Submit</Button>
+            type="submit">Log in</Button>
         </form>
     );
 }
