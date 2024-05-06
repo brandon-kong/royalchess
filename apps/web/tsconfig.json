@@ -3,10 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["src/components/*"],
-      "@/pages/*": ["src/app/*"],
+      "@/*": ["./src/*"]
     },
-    
+
     "plugins": [
       {
         "name": "next"

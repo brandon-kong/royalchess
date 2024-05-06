@@ -6,7 +6,7 @@
     "test": "turbo test",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md,css}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,md,css,json}\"",
     "prepare": "husky"
   },
   "devDependencies": {
