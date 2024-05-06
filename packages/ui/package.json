@@ -8,6 +8,8 @@
     "./code": "./src/code.tsx",
     "./input": "./src/input.tsx",
     "./label": "./src/label.tsx",
+    "./separator": "./src/separator.tsx",
+    "./typography": "./src/typography.tsx",
     "./styles.css": "./dist/index.css"
   },
   "scripts": {
@@ -35,6 +37,7 @@
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0"
   }
