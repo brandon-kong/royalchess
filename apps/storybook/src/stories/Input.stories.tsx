@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { Input } from '@repo/ui/input';
+
+import { Input, InputWithLabel } from '@repo/ui/input';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
-const meta: Meta<typeof Input> = {
+const meta: Meta<typeof InputWithLabel> = {
     title: 'Design System/royalchess/Input',
     component: Input,
 
@@ -12,9 +13,6 @@ const meta: Meta<typeof Input> = {
     argTypes: {
         disabled: {
             description: 'The disabled state of the input',
-            table: {
-                disabled: false,
-            },
             control: {
                 type: 'boolean',
                 disable: false,
@@ -28,6 +26,7 @@ const meta: Meta<typeof Input> = {
     // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
     args: {
         onChange: fn(),
+        placeholder: 'Type something...',
     },
 
     parameters: {
@@ -45,4 +44,17 @@ export const Disabled: Story = {
     args: {
         disabled: true,
     },
+};
+
+export const WithLabel: Story = {
+    render: (args) => (
+        <InputWithLabel
+            {...args}
+            label="Label"
+        />
+    ),
+    args: {
+        "placeholder": "Type something...",
+        label: "Label",
+    }
 };

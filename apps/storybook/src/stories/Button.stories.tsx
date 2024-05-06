@@ -1,6 +1,8 @@
+import { Fragment } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { Button } from '@repo/ui/button';
+import { Button, SocialButton } from '@repo/ui/button';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<typeof Button> = {
@@ -97,5 +99,20 @@ export const Icon: Story = {
 export const Disabled: Story = {
     args: {
         disabled: true,
+    },
+};
+
+export const SocialAuthButtons: Story = {
+    render: (args) => (
+        <Fragment
+        >
+            <SocialButton {...args} >
+                <img src="/vite.svg" alt="Google" className={'w-6 h-6'} />
+                {args.children} Google
+            </SocialButton>
+        </Fragment>
+    ),
+    args: {
+        children: 'Sign in with',
     },
 };
