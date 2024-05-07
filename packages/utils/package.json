@@ -3,7 +3,8 @@
     "version": "0.0.0",
     "private": true,
     "exports": {
-        ".": "./src/index.ts"
+        ".": "./src/index.ts",
+        "./auth": "./src/auth/index.ts"
     },
     "scripts": {
         "test": "jest"
@@ -20,6 +21,7 @@
     },
     "dependencies": {
         "clsx": "^2.1.1",
+        "jwt-decode": "^4.0.0",
         "tailwind-merge": "^2.3.0"
     }
 }

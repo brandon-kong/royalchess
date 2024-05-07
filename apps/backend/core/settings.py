@@ -217,6 +217,13 @@ SOCIALACCOUNT_PROVIDERS = {
             "key": "",
         }
     },
+    "lichess": {
+        "APP": {
+            "client_id": env("LICHESS_CLIENT_ID"),
+            "secret": env("LICHESS_CLIENT_SECRET"),
+            'key': '',
+        }
+    }
 }
 
 # Rest auth
