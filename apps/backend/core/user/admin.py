@@ -4,10 +4,12 @@ from django.contrib.auth.admin import UserAdmin as UserAdminModule
 from .models import User, UserSettings
 from .forms import UserCreationForm, UserChangeForm
 
+
 class UserAdmin(UserAdminModule):
     """
     Custom User Admin module
     """
+
     add_form = UserCreationForm
     form = UserChangeForm
     model = User
@@ -22,6 +24,7 @@ class UserAdmin(UserAdminModule):
     readonly_fields = ["id", "implicit_id", "date_joined"]
 
     ordering = ["email"]
+
 
 admin.site.register(User, UserAdmin)
 admin.site.register(UserSettings)

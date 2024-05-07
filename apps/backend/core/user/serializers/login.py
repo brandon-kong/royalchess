@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from core.user.models import User
 
+
 class UserLoginSerializer(serializers.Serializer):
     """
     Serializer for user creation
@@ -11,10 +12,10 @@ class UserLoginSerializer(serializers.Serializer):
 
     username = None
     email = serializers.EmailField(required=False, allow_blank=True)
-    password = serializers.CharField(style={'input_type': 'password'})
+    password = serializers.CharField(style={"input_type": "password"})
 
     def authenticate(self, **kwargs):
-        return authenticate(self.context['request'], **kwargs)
+        return authenticate(self.context["request"], **kwargs)
 
     def _validate_email(self, email, password):
         if email and password:
@@ -49,11 +50,17 @@ class UserLoginSerializer(serializers.Serializer):
         from allauth.account import app_settings as allauth_account_settings
 
         # Authentication through email
-        if allauth_account_settings.AUTHENTICATION_METHOD == allauth_account_settings.AuthenticationMethod.EMAIL:
+        if (
+            allauth_account_settings.AUTHENTICATION_METHOD
+            == allauth_account_settings.AuthenticationMethod.EMAIL
+        ):
             return self._validate_email(email, password)
 
         # Authentication through username
-        if allauth_account_settings.AUTHENTICATION_METHOD == allauth_account_settings.AuthenticationMethod.USERNAME:
+        if (
+            allauth_account_settings.AUTHENTICATION_METHOD
+            == allauth_account_settings.AuthenticationMethod.USERNAME
+        ):
             return self._validate_username(username, password)
 
         # Authentication through either username or email
@@ -67,7 +74,7 @@ class UserLoginSerializer(serializers.Serializer):
                 pass
 
         if username:
-            return self._validate_username_email(username, '', password)
+            return self._validate_username_email(username, "", password)
 
         return None
 
@@ -85,26 +92,30 @@ class UserLoginSerializer(serializers.Serializer):
     @staticmethod
     def validate_auth_user_status(user):
         if not user.is_active:
-            msg = _('User account is disabled.')
+            msg = _("User account is disabled.")
             raise exceptions.ValidationError(msg)
 
     @staticmethod
     def validate_email_verification_status(user, email=None):
         from allauth.account import app_settings as allauth_account_settings
+
         if (
-            allauth_account_settings.EMAIL_VERIFICATION == allauth_account_settings.EmailVerificationMethod.MANDATORY
-            and not user.emailaddress_set.filter(email=user.email, verified=True).exists()
+            allauth_account_settings.EMAIL_VERIFICATION
+            == allauth_account_settings.EmailVerificationMethod.MANDATORY
+            and not user.emailaddress_set.filter(
+                email=user.email, verified=True
+            ).exists()
         ):
-            raise serializers.ValidationError(_('E-mail is not verified.'))
+            raise serializers.ValidationError(_("E-mail is not verified."))
 
     def validate(self, attrs):
-        username = attrs.get('username')
-        email = attrs.get('email')
-        password = attrs.get('password')
+        username = attrs.get("username")
+        email = attrs.get("email")
+        password = attrs.get("password")
         user = self.get_auth_user(username, email, password)
-        
+
         if not user:
-            msg = _('Unable to log in with provided credentials.')
+            msg = _("Unable to log in with provided credentials.")
             raise exceptions.ValidationError(msg)
 
         # Did we get back an active user?
@@ -113,5 +124,5 @@ class UserLoginSerializer(serializers.Serializer):
         # If required, is the email verified?
         self.validate_email_verification_status(user, email=email)
 
-        attrs['user'] = user
+        attrs["user"] = user
         return attrs

@@ -14,17 +14,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 
-prefix = 'api/v1/'
+prefix = "api/v1/"
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    
-    path('auth/', include('core.user.urls')),
-    path('auth/', include('dj_rest_auth.urls')),
-    path('auth/registration/', include('dj_rest_auth.registration.urls')),
-    path('auth/knox/', include('knox.urls')),
+    path("admin/", admin.site.urls),
+    path("auth/", include("core.user.urls")),
+    path("auth/", include("dj_rest_auth.urls")),
+    path("auth/registration/", include("dj_rest_auth.registration.urls")),
+    path("auth/knox/", include("knox.urls")),
     # Local apps
 ]

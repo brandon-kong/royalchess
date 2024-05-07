@@ -7,6 +7,7 @@ from dj_rest_auth.registration.serializers import RegisterSerializer
 from allauth.account.adapter import get_adapter
 from allauth.socialaccount.models import SocialAccount, EmailAddress
 
+
 class UserRegisterSerializer(RegisterSerializer):
     """
     Serializer for user creation
@@ -16,14 +17,14 @@ class UserRegisterSerializer(RegisterSerializer):
 
     def get_cleaned_data(self):
         return {
-            'password1': self.validated_data.get('password1', ''),
-            'email': self.validated_data.get('email', ''),
+            "password1": self.validated_data.get("password1", ""),
+            "email": self.validated_data.get("email", ""),
         }
-    
+
     def validate_email(self, email):
         email = get_adapter().clean_email(email)
         if email and EmailAddress.objects.filter(email__iexact=email).exists():
             raise serializers.ValidationError(
-                _('A user is already registered with this e-mail address.'),
+                _("A user is already registered with this e-mail address."),
             )
         return email

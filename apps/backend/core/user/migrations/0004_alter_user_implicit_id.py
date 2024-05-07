@@ -7,13 +7,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core_user', '0003_user_implicit_id'),
+        ("core_user", "0003_user_implicit_id"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='user',
-            name='implicit_id',
+            model_name="user",
+            name="implicit_id",
             field=models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
         ),
     ]
