@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import GoogleLoginView, GithubLoginView, LichessLoginView
+from .views import GithubLoginView, GoogleLoginView, LichessLoginView
 
 urlpatterns = [
     path("google/", GoogleLoginView.as_view(), name="google_login"),

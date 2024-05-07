@@ -1,11 +1,9 @@
-from rest_framework import serializers, exceptions
+from allauth.account.adapter import get_adapter
+from allauth.socialaccount.models import EmailAddress, SocialAccount
+from dj_rest_auth.registration.serializers import RegisterSerializer
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
-
-from dj_rest_auth.registration.serializers import RegisterSerializer
-
-from allauth.account.adapter import get_adapter
-from allauth.socialaccount.models import SocialAccount, EmailAddress
+from rest_framework import exceptions, serializers
 
 
 class UserRegisterSerializer(RegisterSerializer):

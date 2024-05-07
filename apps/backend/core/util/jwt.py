@@ -1,4 +1,5 @@
 from typing import TypedDict
+
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from core.user.models import User

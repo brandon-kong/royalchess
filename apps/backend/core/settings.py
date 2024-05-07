@@ -10,9 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-from pathlib import Path
 from datetime import timedelta
-from .env import env, BASE_DIR
+from pathlib import Path
+
+from .env import BASE_DIR, env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 

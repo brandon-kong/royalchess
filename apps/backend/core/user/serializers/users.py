@@ -1,6 +1,6 @@
-from rest_framework import serializers, exceptions
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
+from rest_framework import exceptions, serializers
 
 from core.user.models import User
 
