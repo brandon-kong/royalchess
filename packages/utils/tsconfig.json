@@ -1,11 +1,6 @@
 {
     "extends": "@repo/typescript-config/base.json",
-    "include": [
-        ".",
-        "./src/**/*",
-        "./test/**/*",
-        "./src/types/**/*"
-    ],
+    "include": [".", "./src/**/*", "./test/**/*", "./src/types/**/*"],
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
