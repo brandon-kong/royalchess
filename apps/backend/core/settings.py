@@ -208,22 +208,22 @@ LOGIN_REDIRECT_URL = "/"
 SOCIALACCOUNT_PROVIDERS = {
     "github": {
         "APP": {
-            "client_id": env("GITHUB_CLIENT_ID"),
-            "secret": env("GITHUB_CLIENT_SECRET"),
+            "client_id": env("_GITHUB_CLIENT_ID"),
+            "secret": env("_GITHUB_CLIENT_SECRET"),
             "key": "",
         }
     },
     "google": {
         "APP": {
-            "client_id": env("GOOGLE_CLIENT_ID"),
-            "secret": env("GOOGLE_CLIENT_SECRET"),
+            "client_id": env("_GOOGLE_CLIENT_ID"),
+            "secret": env("_GOOGLE_CLIENT_SECRET"),
             "key": "",
         }
     },
     "lichess": {
         "APP": {
-            "client_id": env("LICHESS_CLIENT_ID"),
-            "secret": env("LICHESS_CLIENT_SECRET"),
+            "client_id": env("_LICHESS_CLIENT_ID"),
+            "secret": env("_LICHESS_CLIENT_SECRET"),
             'key': '',
         }
     }
