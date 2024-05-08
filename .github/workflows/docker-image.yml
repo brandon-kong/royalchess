@@ -32,4 +32,4 @@ jobs:
     - name: Test the Docker image
       run: docker run --rm backend python manage.py test
       working-directory: ./apps/backend
-      
+
