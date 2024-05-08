@@ -33,7 +33,7 @@ jobs:
       run: docker run --rm backend python manage.py migrate
       working-directory: ./apps/backend
 
-    - name: Test the Docker image
+    - name: Test Django backend
       run: docker run --rm backend python manage.py test
       working-directory: ./apps/backend
 
