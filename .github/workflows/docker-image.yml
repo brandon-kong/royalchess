@@ -29,6 +29,10 @@ jobs:
       run: docker build -t backend .
       working-directory: ./apps/backend
 
+    - name: Migrate the database
+      run: docker run --rm backend python manage.py migrate
+      working-directory: ./apps/backend
+
     - name: Test the Docker image
       run: docker run --rm backend python manage.py test
       working-directory: ./apps/backend
