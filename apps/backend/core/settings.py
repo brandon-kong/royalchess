@@ -45,8 +45,11 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.github",
+    "allauth.socialaccount.providers.lichess",
+
     "dj_rest_auth",
     "dj_rest_auth.registration",
     "django.contrib.admin",

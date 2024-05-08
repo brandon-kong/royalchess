@@ -4,7 +4,10 @@
     "private": true,
     "license": "MIT",
     "scripts": {
-      "dev": "docker-compose up"
+      "dev": "docker-compose up",
+      "migrate": "docker-compose exec web python manage.py migrate",
+      "backend:makemigrations": "docker-compose exec web python manage.py makemigrations",
+      "backend:createsuperuser": "docker-compose exec web python manage.py createsuperuser"
     }
   }
   
