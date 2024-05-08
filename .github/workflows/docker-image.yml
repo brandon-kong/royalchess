@@ -31,3 +31,16 @@ jobs:
     - name: Test the Docker image
       run: docker run --rm backend python manage.py test
       working-directory: ./apps/backend
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        CACHE_URL: ${{ secrets.CACHE_URL }}
+        DEBUG: ${{ secrets.DEBUG }}
+        ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+        CORS_ORIGIN_WHITELIST: ${{ secrets.CORS_ORIGIN_WHITELIST }}
+        _GOOGLE_CLIENT_ID: ${{ secrets._GOOGLE_CLIENT_ID }}
+        _GOOGLE_CLIENT_SECRET: ${{ secrets._GOOGLE_CLIENT_SECRET }}
+        _GITHUB_CLIENT_ID: ${{ secrets._GITHUB_CLIENT_ID }}
+        _GITHUB_CLIENT_SECRET: ${{ secrets._GITHUB_CLIENT_SECRET }}
+        _LICHESS_CLIENT_ID: ${{ secrets._LICHESS_CLIENT_ID }}
+        _LICHESS_CLIENT_SECRET: ${{ secrets._LICHESS_CLIENT_SECRET }}
