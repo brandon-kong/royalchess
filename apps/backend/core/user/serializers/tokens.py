@@ -1,5 +1,6 @@
-from rest_framework_simplejwt.serializers import \
-    TokenObtainPairSerializer as DRFSJ_TokenObtainPairSerializer
+from rest_framework_simplejwt.serializers import (
+    TokenObtainPairSerializer as DRFSJ_TokenObtainPairSerializer,
+)
 
 from core.user.models import User
 

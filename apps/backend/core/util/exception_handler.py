@@ -1,7 +1,8 @@
 from typing import Any
 
-from drf_standardized_errors.formatter import \
-    ExceptionFormatter as DRFSE_ExceptionFormatter
+from drf_standardized_errors.formatter import (
+    ExceptionFormatter as DRFSE_ExceptionFormatter,
+)
 from drf_standardized_errors.types import ErrorResponse
 
 

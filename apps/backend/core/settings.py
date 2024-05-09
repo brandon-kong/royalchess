@@ -45,11 +45,9 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.github",
     "allauth.socialaccount.providers.lichess",
-
     "dj_rest_auth",
     "dj_rest_auth.registration",
     "django.contrib.admin",
@@ -224,9 +222,9 @@ SOCIALACCOUNT_PROVIDERS = {
         "APP": {
             "client_id": env("_LICHESS_CLIENT_ID"),
             "secret": env("_LICHESS_CLIENT_SECRET"),
-            'key': '',
+            "key": "",
         }
-    }
+    },
 }
 
 # Rest auth
