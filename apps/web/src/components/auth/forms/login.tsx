@@ -1,9 +1,10 @@
 'use client';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Input, InputWithLabel } from '@repo/ui/input';
-import { Button } from '@repo/ui/button';
+import { InputWithLabel } from '@repo/ui/input';
+import { Button, LinkButton } from '@repo/ui/button';
 import type { LoginForm } from '@/types/forms/auth';
+import { signIn } from 'next-auth/react';
 
 export default function LoginForm(): JSX.Element {
     const {
@@ -12,8 +13,12 @@ export default function LoginForm(): JSX.Element {
         formState: { errors },
     } = useForm<LoginForm>();
 
-    const onSubmit: SubmitHandler<LoginForm> = (data) => {
-        console.log(data);
+    const onSubmit: SubmitHandler<LoginForm> = async (data) => {
+        const res = await signIn('credentials', {
+            email: data.email,
+            password: data.password,
+            redirect: false,
+        });
     };
 
     return (
@@ -22,20 +27,20 @@ export default function LoginForm(): JSX.Element {
             className={'flex flex-col gap-4 w-full'}
         >
             <InputWithLabel
+                error={errors.email !== undefined}
                 label="Email"
                 type="email"
                 placeholder="Email"
                 {...register('email', { required: true })}
             />
-            {errors.email && <span>Email is required</span>}
 
             <InputWithLabel
+                error={errors.password !== undefined}
                 label="Password"
                 type="password"
                 placeholder="Password"
                 {...register('password', { required: true })}
             />
-            {errors.password && <span>Password is required</span>}
 
             <Button className={'w-full'} type="submit">
                 Log in

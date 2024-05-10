@@ -4,19 +4,23 @@ import { Label } from './label';
 import { cn } from '@repo/utils';
 
 export interface InputProps
-    extends React.InputHTMLAttributes<HTMLInputElement> {}
+    extends React.InputHTMLAttributes<HTMLInputElement> {
+    error?: boolean;
+}
 
 export interface InputWithLabelProps extends InputProps {
     label?: string;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-    ({ className, type, ...props }, ref) => {
+    ({ className, error = false, type, ...props }, ref) => {
         return (
             <input
+                data-error={error}
                 type={type}
                 className={cn(
-                    'flex h-12 w-full rounded-md bg-neutral-100 px-4 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+                    'transition-all flex h-12 w-full rounded-md ring-2 ring-offset-1 bg-neutral-200 px-4 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground outline-none focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+                    error ? 'ring-destructive' : 'ring-transparent',
                     className,
                 )}
                 ref={ref}
@@ -36,6 +40,7 @@ const InputWithLabel = React.forwardRef<HTMLInputElement, InputWithLabelProps>(
                     type={type}
                     className={cn('rounded-md', className)}
                     ref={ref}
+                    name={name}
                     {...props}
                 />
             </div>

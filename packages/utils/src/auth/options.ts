@@ -18,6 +18,10 @@ import { AdapterUser } from 'next-auth/adapters';
 import { BACKEND_API_URL } from '../constants';
 
 const handler: NextAuthOptions = {
+    pages: {
+        signIn: '/auth/login',
+    },
+
     providers: [
         {
             id: 'lichess',
@@ -115,8 +119,8 @@ const handler: NextAuthOptions = {
         }),
 
         CredentialsProvider({
-            id: 'email-password',
-            name: 'email-password',
+            id: 'credentials',
+            name: 'credentials',
             credentials: {
                 email: { label: 'Email', type: 'text', placeholder: 'Email' },
                 password: {
@@ -153,8 +157,8 @@ const handler: NextAuthOptions = {
         }),
 
         CredentialsProvider({
-            id: 'register-email-password',
-            name: 'register-email-password',
+            id: 'credentials-register',
+            name: 'credentials-register',
             credentials: {
                 email: { label: 'Email', type: 'text', placeholder: 'Email' },
                 password1: {

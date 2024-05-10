@@ -97,4 +97,36 @@ const SocialButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
 );
 
-export { Button, ButtonGroup, ButtonIcon, SocialButton, buttonVariants };
+export interface LinkButtonProps extends ButtonProps {
+    href: string;
+    target?: string;
+}
+
+const LinkButton = React.forwardRef<HTMLButtonElement, LinkButtonProps>(
+    (
+        { className, variant, size, href, target, asChild = false, ...props },
+        ref,
+    ) => {
+        return (
+            <Button
+                className={cn(
+                    'inline-flex items-center justify-center gap-2 p-0 h-fit w-fit',
+                    className,
+                )}
+                variant={'link'}
+                size={size}
+                ref={ref}
+                {...props}
+            />
+        );
+    },
+);
+
+export {
+    Button,
+    ButtonGroup,
+    ButtonIcon,
+    SocialButton,
+    LinkButton,
+    buttonVariants,
+};
