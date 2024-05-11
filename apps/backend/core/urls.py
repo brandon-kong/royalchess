@@ -17,6 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
+from dj_rest_auth.registration.views import VerifyEmailView
 
 prefix = "api/v1/"
 
@@ -25,6 +26,7 @@ urlpatterns = [
     path("auth/", include("core.user.urls")),
     path("auth/", include("dj_rest_auth.urls")),
     path("auth/registration/", include("dj_rest_auth.registration.urls")),
+    path("auth/account-confirm-email/<str:key>/", VerifyEmailView.as_view(), name="account_email_verification_sent"),
     path("auth/knox/", include("knox.urls")),
     # Local apps
 ]

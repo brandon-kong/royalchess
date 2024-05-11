@@ -20,13 +20,18 @@ export default function RegisterForm(): JSX.Element {
     } = useForm<RegisterForm>();
 
     const onSubmit: SubmitHandler<RegisterForm> = async (data) => {
-        const res = await attemptCreateUser(data);
+        try {
+            const res = await attemptCreateUser(data);
 
-        alert(JSON.stringify(res));
-        if (!res) {
-            toast.error('Invalid email or password');
-        } else {
-            router.push('/auth/verify-email');
+            alert(JSON.stringify(res));
+            if (!res) {
+                toast.error('Invalid email or password');
+            } else {
+                router.push('/auth/verify-email');
+            }
+        }
+        catch (error) {
+            toast.error('Something went wrong');
         }
     };
 
