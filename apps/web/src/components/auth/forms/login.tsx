@@ -20,23 +20,27 @@ export default function LoginForm(): JSX.Element {
     } = useForm<LoginForm>();
 
     const onSubmit: SubmitHandler<LoginForm> = async (data) => {
-        const res = await signIn('credentials', {
-            email: data.email,
-            password: data.password,
-            redirect: false,
-        });
+        try {
+            const res = await signIn('credentials', {
+                email: data.email,
+                password: data.password,
+                redirect: false,
+            });
 
-        if (!res?.ok) {
-            toast.error('Invalid email or password');
-        }
+            if (!res?.ok) {
+                toast.error('Invalid email or password');
+            }
 
-        if (res?.ok) {
-            // get the callbackUrl from the searchParams or the next param
-            let callbackUrl = searchParams.get('callbackUrl');
-            const next = searchParams.get('next') || '/';
-            callbackUrl = callbackUrl || next;
+            if (res?.ok) {
+                // get the callbackUrl from the searchParams or the next param
+                let callbackUrl = searchParams.get('callbackUrl');
+                const next = searchParams.get('next') || '/';
+                callbackUrl = callbackUrl || next;
 
-            router.push(res.url || callbackUrl);
+                router.push(res.url || callbackUrl);
+            }
+        } catch (error) {
+            toast.error('Something went wrong');
         }
     };
 

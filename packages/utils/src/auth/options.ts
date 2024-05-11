@@ -157,46 +157,6 @@ const handler: NextAuthOptions = {
                 }
             },
         }),
-
-        CredentialsProvider({
-            id: 'credentials-register',
-            name: 'credentials-register',
-            credentials: {
-                email: { label: 'Email', type: 'text', placeholder: 'Email' },
-                password1: {
-                    label: 'Password',
-                    type: 'password',
-                    placeholder: 'Password',
-                },
-                password2: {
-                    label: 'Confirm Password',
-                    type: 'password',
-                    placeholder: 'Confirm Password',
-                },
-            },
-            async authorize(credentials) {
-                const res = await fetch(
-                    `${BACKEND_API_URL}/auth/registration/`,
-                    {
-                        method: 'POST',
-                        body: JSON.stringify(credentials),
-                        headers: { 'Content-Type': 'application/json' },
-                    },
-                );
-
-                const data = await res.json();
-
-                if (!res.ok) {
-                    const errorResponse: ErrorResponse = data as ErrorResponse;
-                    throw new Error(errorResponse.code);
-                }
-
-                const user = data as User;
-                user.email = credentials && credentials.email;
-
-                return {};
-            },
-        }),
     ],
 
     callbacks: {
@@ -224,7 +184,7 @@ const handler: NextAuthOptions = {
 
                 if (provider_access_token) {
                     const providerAuth = await fetch(
-                        `${BACKEND_API_URL}/auth/${account.provider}/`,
+                        `${BACKEND_API_URL}/auth/oauth/${account.provider}/`,
                         {
                             method: 'POST',
                             headers: {

@@ -57,6 +57,8 @@ export default function RegisterPage(): JSX.Element {
                         src={'/images/isometric-chess.webp'}
                         alt={'Isometric chess board'}
                         fill
+                        priority
+                        sizes={'100vw'}
                         draggable={false}
                         className={
                             'select-none w-full object-contain max-w-md xl:max-w-lg mx-auto'

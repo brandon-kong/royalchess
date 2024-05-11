@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     # AllAuth
     "allauth",
     "allauth.account",
+    "allauth.headless",
+    "allauth.usersessions",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.github",
@@ -149,7 +151,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
-    #"django.contrib.auth.backends.ModelBackend",
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 # Hide warnings
@@ -195,11 +197,13 @@ SIMPLE_JWT = {
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_UNIQUE_EMAIL = True
+
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 LOGIN_REDIRECT_URL = "/"
+
+ACCOUNT_UNIQUE_EMAIL = True
 
 # Social Account
 
@@ -237,8 +241,11 @@ REST_AUTH = {
     "JWT_AUTH_HTTPONLY": False,
     "JWT_AUTH_SAMESITE": "None",
     "LOGIN_SERIALIZER": "core.user.serializers.login.UserLoginSerializer",
+    "REGISTER_SERIALIZER": "dj_rest_auth.registration.serializers.RegisterSerializer",
     "JWT_TOKEN_CLAIMS_SERIALIZER": "core.user.serializers.tokens.TokenObtainPairSerializer",
 }
+
+LOGIN_URL = 'http://localhost:8000/auth/login'
 
 # Knox
 
@@ -273,3 +280,9 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = False
 EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
+
+# CSRF
+
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = False
+CSRF_COOKIE_SAMESITE = "None"

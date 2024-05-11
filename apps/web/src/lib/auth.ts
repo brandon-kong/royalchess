@@ -18,6 +18,7 @@ const attemptCreateUser = async (
                 password1: credentials.password,
                 password2: credentials.passwordConfirmation,
             }),
+            credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
         },
     );

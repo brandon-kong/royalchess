@@ -12,7 +12,6 @@ import { attemptCreateUser } from '@/lib/auth';
 
 export default function RegisterForm(): JSX.Element {
     const router = useRouter();
-    const searchParams = useSearchParams();
     const {
         register,
         handleSubmit,
@@ -23,7 +22,6 @@ export default function RegisterForm(): JSX.Element {
         try {
             const res = await attemptCreateUser(data);
 
-            alert(JSON.stringify(res));
             if (!res) {
                 toast.error('Invalid email or password');
             } else {
