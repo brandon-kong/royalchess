@@ -20,6 +20,8 @@ import { BACKEND_API_URL } from '../constants';
 const handler: NextAuthOptions = {
     pages: {
         signIn: '/auth/login',
+        newUser: '/auth/register',
+        error: '/auth/login',
     },
 
     providers: [

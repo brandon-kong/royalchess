@@ -3,9 +3,11 @@ import * as React from 'react';
 import { Label } from './label';
 import { cn } from '@repo/utils';
 
+import type { FieldError } from 'react-hook-form';
+
 export interface InputProps
     extends React.InputHTMLAttributes<HTMLInputElement> {
-    error?: boolean;
+    error?: FieldError;
 }
 
 export interface InputWithLabelProps extends InputProps {
@@ -33,6 +35,7 @@ Input.displayName = 'Input';
 
 const InputWithLabel = React.forwardRef<HTMLInputElement, InputWithLabelProps>(
     ({ className, name, label, type, ...props }, ref) => {
+        const error = props.error;
         return (
             <div className="flex flex-col gap-1">
                 <Label htmlFor={name}>{label || name || 'Label'}</Label>
@@ -43,6 +46,11 @@ const InputWithLabel = React.forwardRef<HTMLInputElement, InputWithLabelProps>(
                     name={name}
                     {...props}
                 />
+                {error && (
+                    <span className="text-sm text-destructive">
+                        {error && error.message}
+                    </span>
+                )}
             </div>
         );
     },
