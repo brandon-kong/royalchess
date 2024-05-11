@@ -8,6 +8,7 @@ import type { RegisterForm } from '@/types/forms/auth';
 import { signIn } from 'next-auth/react';
 import { toast } from 'sonner';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { attemptCreateUser } from '@/lib/auth';
 
 export default function RegisterForm(): JSX.Element {
     const router = useRouter();
@@ -19,31 +20,20 @@ export default function RegisterForm(): JSX.Element {
     } = useForm<RegisterForm>();
 
     const onSubmit: SubmitHandler<RegisterForm> = async (data) => {
-        const res = await signIn('credentials-register', {
-            email: data.email,
-            password1: data.password,
-            password2: data.passwordConfirmation,
-            redirect: true,
-        });
+        const res = await attemptCreateUser(data);
 
-        if (!res?.ok) {
-            toast.error('Could');
-        }
-
-        if (res?.ok) {
-            // get the callbackUrl from the searchParams or the next param
-            let callbackUrl = searchParams.get('callbackUrl');
-            const next = searchParams.get('next') || '/';
-            callbackUrl = callbackUrl || next;
-
-            router.push(callbackUrl);
+        alert(JSON.stringify(res));
+        if (!res) {
+            toast.error('Invalid email or password');
+        } else {
+            router.push('/auth/verify-email');
         }
     };
 
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className={'flex flex-col gap-4 w-full'}
+            className={'flex flex-col gap-6 w-full'}
         >
             <InputWithLabel
                 error={errors.email}

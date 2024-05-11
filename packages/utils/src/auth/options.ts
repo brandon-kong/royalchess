@@ -194,11 +194,7 @@ const handler: NextAuthOptions = {
                 const user = data as User;
                 user.email = credentials && credentials.email;
 
-                if (res.ok && user) {
-                    return user;
-                } else {
-                    return null;
-                }
+                return {};
             },
         }),
     ],
@@ -377,9 +373,6 @@ const handler: NextAuthOptions = {
             if (!token || !token.access) {
                 return {} as Session;
             }
-
-            session.access = token.access;
-            session.refresh = token.refresh;
 
             session.user = {
                 id: token.user_id,

@@ -36,14 +36,14 @@ export default function LoginForm(): JSX.Element {
             const next = searchParams.get('next') || '/';
             callbackUrl = callbackUrl || next;
 
-            router.push(callbackUrl);
+            router.push(res.url || callbackUrl);
         }
     };
 
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className={'flex flex-col gap-4 w-full'}
+            className={'flex flex-col gap-6 w-full'}
         >
             <InputWithLabel
                 error={errors.email}
