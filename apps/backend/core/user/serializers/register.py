@@ -18,11 +18,3 @@ class UserRegisterSerializer(RegisterSerializer):
             "password1": self.validated_data.get("password1", ""),
             "email": self.validated_data.get("email", ""),
         }
-
-    def validate_email(self, email):
-        email = get_adapter().clean_email(email)
-        if email and EmailAddress.objects.filter(email__iexact=email).exists():
-            raise serializers.ValidationError(
-                _("A user is already registered with this e-mail address."),
-            )
-        return email

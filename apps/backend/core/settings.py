@@ -198,7 +198,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 LOGIN_REDIRECT_URL = "/"
 
 # Social Account
@@ -237,7 +237,6 @@ REST_AUTH = {
     "JWT_AUTH_HTTPONLY": False,
     "JWT_AUTH_SAMESITE": "None",
     "LOGIN_SERIALIZER": "core.user.serializers.login.UserLoginSerializer",
-    "REGISTER_SERIALIZER": "core.user.serializers.register.UserRegisterSerializer",
     "JWT_TOKEN_CLAIMS_SERIALIZER": "core.user.serializers.tokens.TokenObtainPairSerializer",
 }
 
@@ -263,3 +262,14 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "http://0.0.0.0:8000",
 ]
+
+# Email
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'admin@localhost'
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
