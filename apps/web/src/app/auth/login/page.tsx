@@ -9,13 +9,9 @@ import { GoogleButton, LichessButton } from '@/components/auth/buttons';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { toast } from 'sonner';
+import { Suspense } from 'react';
 
-export default function LoginPage({
-    searchParams,
-}: {
-    searchParams: { [key: string]: string | string[] | undefined };
-}): JSX.Element {
+export default function LoginPage(): JSX.Element {
     return (
         <main className="bg-background flex flex-col items-center justify-center min-h-screen">
             <div className={'w-full p-8 sm:p-0 flex h-screen'}>
@@ -26,7 +22,9 @@ export default function LoginPage({
                         </div>
 
                         <div className={'flex flex-col gap-4 w-full'}>
-                            <LoginForm />
+                            <Suspense>
+                                <LoginForm />
+                            </Suspense>
 
                             <div
                                 className={

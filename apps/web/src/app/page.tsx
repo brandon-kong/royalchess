@@ -86,36 +86,30 @@ export default function Page(): JSX.Element {
                     <div className={'flex gap-4'}>
                         <div
                             className={
-                                'bg-purple-200 text-sm text-purple-900 rounded-lg p-4 h-full w-full flex flex-col gap-2'
+                                'bg-purple-100 text-sm text-purple-900 rounded-lg p-4 h-full w-full flex flex-col gap-2'
                             }
                         >
-                            <H4>Opening</H4>
+                            <div
+                            className={'flex items-center gap-2'}
+                            >
+                                <Image
+                                src={'/icons/rook.svg'}
+                                alt={'Rook icon'}
+                                width={24}
+                                height={24}
+                                className={'stroke-white  aspect-square w-6 h-6'}
+                                />
+                                <H4>Opening</H4>
+                            </div>
+                            
                             <P>
                                 <b>Caro-Kann Defense - Advance Variation</b>
                             </P>
 
                             <P>
-                                You played the Caro-Kann Defense - Advance
-                                Variation. This opening is a solid choice for
-                                black. It aims to control the center of the
-                                board and develop the pieces.
+                                Solid choice for Black, aiming for central
+                                control and piece development.
                             </P>
-
-                            <P>
-                                You played this opening <b>73%</b> of the time.
-                            </P>
-
-                            <div>
-                                <div className={'flex-1 h-2'}>
-                                    <div
-                                        className={
-                                            'bg-purple-300 h-full w-3/4 rounded-full'
-                                        }
-                                    ></div>
-                                </div>
-                            </div>
-
-                            <hr className={'border-purple-300'} />
 
                             <P>
                                 <b>1. e4 c6</b>
@@ -123,6 +117,39 @@ export default function Page(): JSX.Element {
                                 <b>2. d4 d5</b>
                                 <br />
                                 <b>3. e5</b>
+                            </P>
+
+                            <Button
+                                variant={'link'}
+                                className={'text-primary w-fit h-fit p-0'}
+                            >
+                                View more
+                            </Button>
+
+                            <hr className={'border-purple-300'} />
+
+                            <H4>Performance</H4>
+
+                            <P>
+                                You played this opening <b>73%</b> of the time.
+                            </P>
+
+                            <div
+                                className={
+                                    'my-2 w-full h-2 bg-purple-300 rounded-full overflow-hidden'
+                                }
+                            >
+                                <div
+                                    className={'w-1/2 h-full bg-purple-600'}
+                                ></div>
+                            </div>
+
+                            <P>
+                                <b>Win rate:</b> 50%
+                            </P>
+
+                            <P>
+                             <b>Loss rate:</b> 25%
                             </P>
                         </div>
 
