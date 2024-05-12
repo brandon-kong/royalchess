@@ -57,7 +57,7 @@ export function H3({ children, className, ...props }: TypographyHProps) {
     return (
         <h3
             className={twMerge(
-                'text-2xl font-semibold',
+                'text-3xl font-semibold',
                 'tracking-tighter',
                 className,
             )}

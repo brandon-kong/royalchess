@@ -10,12 +10,13 @@
         "./label": "./src/label.tsx",
         "./separator": "./src/separator.tsx",
         "./typography": "./src/typography.tsx",
+        "./icons": "./src/icons.tsx",
         "./styles.css": "./dist/index.css"
     },
     "scripts": {
         "build": "tailwindcss -i ./src/styles.css -o ./dist/index.css",
         "lint": "eslint src/",
-        "dev": "tailwindcss -i ./src/styles.css -o ./dist/index.css --watch",
+        "dev": "tailwindcss -i ./src/styles.css -o ./dist/index.css --watch --full",
         "type-check": "tsc --noEmit"
     },
     "devDependencies": {
@@ -36,9 +37,13 @@
         "typescript": "^5.3.3"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.5.2",
+        "@fortawesome/free-solid-svg-icons": "^6.5.2",
+        "@fortawesome/react-fontawesome": "^0.2.0",
         "@radix-ui/react-label": "^2.0.2",
         "@radix-ui/react-separator": "^1.0.3",
         "@radix-ui/react-slot": "^1.0.2",
-        "class-variance-authority": "^0.7.0"
+        "class-variance-authority": "^0.7.0",
+        "next": "^14.1.1"
     }
 }

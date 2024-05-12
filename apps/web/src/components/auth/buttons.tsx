@@ -4,14 +4,21 @@ import React from 'react';
 import { SocialButton, type ButtonProps } from '@repo/ui/button';
 import Image from 'next/image';
 
+import { signIn, signOut } from 'next-auth/react';
+
 type SocialButtonType = typeof SocialButton;
 
 const GoogleButton: SocialButtonType = React.forwardRef<
     HTMLButtonElement,
     ButtonProps
 >(({ ...props }, ref) => {
+    const handleSignIn = async () => {
+        const res = await signIn('google', {
+            redirect: false,
+        });
+    };
     return (
-        <SocialButton onClick={() => console.log('Google')} {...props}>
+        <SocialButton onClick={handleSignIn} {...props}>
             <Image
                 src="/logos/google.svg"
                 alt="Google"
@@ -28,8 +35,13 @@ const LichessButton: SocialButtonType = React.forwardRef<
     HTMLButtonElement,
     ButtonProps
 >(({ ...props }, ref) => {
+    const handleSignIn = async () => {
+        const res = await signIn('lichess', {
+            redirect: false,
+        });
+    };
     return (
-        <SocialButton onClick={() => console.log('Lichess')} {...props}>
+        <SocialButton onClick={handleSignIn} {...props}>
             <Image
                 src="/logos/lichess.svg"
                 alt="Lichess"
@@ -41,4 +53,17 @@ const LichessButton: SocialButtonType = React.forwardRef<
     );
 });
 
-export { GoogleButton, LichessButton };
+const LogoutButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
+    ({ ...props }, ref) => {
+        const handleSignOut = async () => {
+            const res = await signOut();
+        };
+        return (
+            <SocialButton onClick={handleSignOut} {...props}>
+                Sign out
+            </SocialButton>
+        );
+    },
+);
+
+export { GoogleButton, LichessButton, LogoutButton };

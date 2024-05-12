@@ -14,3 +14,9 @@ Using `isort`
 ```bash
 isort .
 ```
+
+
+## Resetting the build
+
+```bash
+docker-compose up -d --no-deps --build <service-name>

@@ -18,6 +18,12 @@ import { AdapterUser } from 'next-auth/adapters';
 import { BACKEND_API_URL } from '../constants';
 
 const handler: NextAuthOptions = {
+    pages: {
+        signIn: '/auth/login',
+        newUser: '/auth/register',
+        error: '/auth/login',
+    },
+
     providers: [
         {
             id: 'lichess',
@@ -115,8 +121,8 @@ const handler: NextAuthOptions = {
         }),
 
         CredentialsProvider({
-            id: 'email-password',
-            name: 'email-password',
+            id: 'credentials',
+            name: 'credentials',
             credentials: {
                 email: { label: 'Email', type: 'text', placeholder: 'Email' },
                 password: {
@@ -151,50 +157,6 @@ const handler: NextAuthOptions = {
                 }
             },
         }),
-
-        CredentialsProvider({
-            id: 'register-email-password',
-            name: 'register-email-password',
-            credentials: {
-                email: { label: 'Email', type: 'text', placeholder: 'Email' },
-                password1: {
-                    label: 'Password',
-                    type: 'password',
-                    placeholder: 'Password',
-                },
-                password2: {
-                    label: 'Confirm Password',
-                    type: 'password',
-                    placeholder: 'Confirm Password',
-                },
-            },
-            async authorize(credentials) {
-                const res = await fetch(
-                    `${BACKEND_API_URL}/auth/registration/`,
-                    {
-                        method: 'POST',
-                        body: JSON.stringify(credentials),
-                        headers: { 'Content-Type': 'application/json' },
-                    },
-                );
-
-                const data = await res.json();
-
-                if (!res.ok) {
-                    const errorResponse: ErrorResponse = data as ErrorResponse;
-                    throw new Error(errorResponse.code);
-                }
-
-                const user = data as User;
-                user.email = credentials && credentials.email;
-
-                if (res.ok && user) {
-                    return user;
-                } else {
-                    return null;
-                }
-            },
-        }),
     ],
 
     callbacks: {
@@ -222,7 +184,7 @@ const handler: NextAuthOptions = {
 
                 if (provider_access_token) {
                     const providerAuth = await fetch(
-                        `${BACKEND_API_URL}/auth/${account.provider}/`,
+                        `${BACKEND_API_URL}/auth/oauth/${account.provider}/`,
                         {
                             method: 'POST',
                             headers: {
@@ -371,9 +333,6 @@ const handler: NextAuthOptions = {
             if (!token || !token.access) {
                 return {} as Session;
             }
-
-            session.access = token.access;
-            session.refresh = token.refresh;
 
             session.user = {
                 id: token.user_id,

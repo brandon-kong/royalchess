@@ -3,40 +3,36 @@ import { Button, LinkButton } from '@repo/ui/button';
 import { Separator } from '@repo/ui/separator';
 import { H1, H2, H3, P } from '@repo/ui/typography';
 
-import LoginForm from '@/components/auth/forms/login';
+import RegisterForm from '@/components/auth/forms/register';
 
 import { GoogleButton, LichessButton } from '@/components/auth/buttons';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { Suspense } from 'react';
-
-export default function LoginPage(): JSX.Element {
+export default function RegisterPage(): JSX.Element {
     return (
         <main className="bg-background flex flex-col items-center justify-center min-h-screen">
             <div className={'w-full p-8 sm:p-0 flex h-screen'}>
                 <div className={'flex-1 flex items-center'}>
                     <div className={'max-w-sm mx-auto w-full'}>
                         <div className={'mb-4 space-y-4'}>
-                            <H3>Sign in</H3>
+                            <H3>Create an account</H3>
                         </div>
 
                         <div className={'flex flex-col gap-4 w-full'}>
-                            <Suspense>
-                                <LoginForm />
-                            </Suspense>
+                            <RegisterForm />
 
                             <div
                                 className={
                                     'text-sm text-muted-foreground text-center'
                                 }
                             >
-                                Don&apos;t have an account?{' '}
+                                Already have an account?{' '}
                                 <Button
                                     variant={'link'}
                                     className={'text-primary w-fit h-fit p-0'}
                                 >
-                                    <Link href="/auth/register">Register</Link>
+                                    <Link href="/auth/login">Login</Link>
                                 </Button>
                             </div>
 
