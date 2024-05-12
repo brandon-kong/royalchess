@@ -10,12 +10,13 @@
         "./label": "./src/label.tsx",
         "./separator": "./src/separator.tsx",
         "./typography": "./src/typography.tsx",
+        "./icons": "./src/icons.tsx",
         "./styles.css": "./dist/index.css"
     },
     "scripts": {
         "build": "tailwindcss -i ./src/styles.css -o ./dist/index.css",
         "lint": "eslint src/",
-        "dev": "tailwindcss -i ./src/styles.css -o ./dist/index.css --watch",
+        "dev": "tailwindcss -i ./src/styles.css -o ./dist/index.css --watch --full",
         "type-check": "tsc --noEmit"
     },
     "devDependencies": {
