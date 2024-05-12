@@ -27,8 +27,7 @@ export default function RegisterForm(): JSX.Element {
             } else {
                 router.push('/auth/verify-email');
             }
-        }
-        catch (error) {
+        } catch (error) {
             toast.error('Something went wrong');
         }
     };
