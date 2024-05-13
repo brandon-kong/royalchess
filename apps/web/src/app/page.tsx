@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Image from 'next/image';
 import { Button } from '@repo/ui/button';
@@ -49,7 +49,7 @@ export default function Page(): JSX.Element {
                         </div>
 
                         <P className={'text-xs text-muted-foreground self-end'}>
-                            { fen }
+                            {fen}
                         </P>
                     </div>
 

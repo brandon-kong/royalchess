@@ -4,4 +4,4 @@ interface Move {
     promotion?: string;
 }
 
-export { Move }
+export { Move };

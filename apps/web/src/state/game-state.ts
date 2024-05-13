@@ -36,8 +36,7 @@ const useGameState = create<GameState>((set) => ({
             state.history.push(move);
             return state;
         });
-        
-    }
+    },
 }));
 
 export default useGameState;
