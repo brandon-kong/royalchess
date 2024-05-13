@@ -55,7 +55,7 @@ export default function ChatCard() {
                             'You can also provide general advice about chess.',
                     },
                     {
-                        role: 'system',
+                        role: 'user',
                         content:
                             'Assume the user is intermediate chess player that knows what the FEN string is and what it means.',
                     },
