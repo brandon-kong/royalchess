@@ -5,6 +5,8 @@ import { Chess } from 'chess.js';
 import { Chessboard } from 'react-chessboard';
 import type { Move } from 'chess.js';
 
+import useGameState from '@/state/game-state';
+
 type MoveParam =
     | string
     | {
@@ -20,13 +22,16 @@ type PlayRandomMoveEngineProps = {
 export default function PlayRandomMoveEngine({
     gameStarted = false,
 }: PlayRandomMoveEngineProps) {
-    const [game, setGame] = useState(new Chess());
+    const { fen, setFen, game, setGame, makeMove } = useGameState();
 
     function makeAMove(move: MoveParam) {
         try {
             const result = game.move(move as Move);
             if (result === null) return null;
+
             setGame(new Chess(game.fen()));
+            setFen(game.fen());
+            makeMove(move as Move);
             return result; // null if the move was illegal, the move object if the move was legal
         } catch (e) {
             return null;

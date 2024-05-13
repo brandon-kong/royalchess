@@ -1,3 +1,5 @@
+"use client";
+
 import Image from 'next/image';
 import { Button } from '@repo/ui/button';
 import { LogoutButton } from '@/components/auth/buttons';
@@ -12,7 +14,11 @@ import {
     faExclamationCircle,
 } from '@repo/ui/icons';
 
+import useGameState from '@/state/game-state';
+import ChatCard from '@/components/chat';
+
 export default function Page(): JSX.Element {
+    const { fen } = useGameState();
     return (
         <main className="bg-background min-h-screen flex items-center py-2">
             <div
@@ -41,6 +47,10 @@ export default function Page(): JSX.Element {
 
                             <P>(1300)</P>
                         </div>
+
+                        <P className={'text-xs text-muted-foreground self-end'}>
+                            { fen }
+                        </P>
                     </div>
 
                     <div className={'relative max-w-2xl w-full'}>
@@ -261,38 +271,7 @@ export default function Page(): JSX.Element {
                             </div>
                         </div>
 
-                        <div
-                            className={
-                                'bg-neutral-100 rounded-lg p-4 h-full w-full flex-1 flex gap-4 col-span-2'
-                            }
-                        >
-                            <Image
-                                src={'/images/coach.svg'}
-                                alt={'Isometric chess board'}
-                                width={56}
-                                height={56}
-                                className={
-                                    'rounded-lg bg-neutral-600 aspect-square w-16 h-16 pt-1'
-                                }
-                            />
-
-                            <div
-                                className={
-                                    'flex flex-col justify-center text-sm self-start'
-                                }
-                            >
-                                <div className={''}>
-                                    <P className={'font-semibold'}>
-                                        Coach Nelson
-                                    </P>
-                                </div>
-
-                                <P className={'text-neutral-900'}>
-                                    You are really close to winning the game.
-                                    Try to find the best move.
-                                </P>
-                            </div>
-                        </div>
+                        <ChatCard />
                     </div>
                 </div>
             </div>
