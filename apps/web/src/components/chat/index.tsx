@@ -8,10 +8,13 @@ import { Input } from '@repo/ui/input';
 import useGameState from '@/state/game-state';
 import { set } from 'react-hook-form';
 
+import { completeChessContextMessage } from '@/lib/chat';
+
 export default function ChatCard() {
     const [message, setMessage] = useState('');
     const [coachMessage, setCoachMessage] = useState('');
     const [generating, setGenerating] = useState(false);
+    const [messageList, setMessageList] = useState<string[]>([]);
     const { fen } = useGameState();
 
     const sendMessageToLLM = async (message: string) => {
@@ -26,104 +29,21 @@ export default function ChatCard() {
         try {
             console.log(`Sending message to LLM: ${message}`);
 
-            const body = {
-                model: 'lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF',
-                messages: [
-                    {
-                        role: 'system',
-                        content:
-                            'You are a chess coach named Nelson that answers questions about chess and gains insight into positions.',
-                    },
-                    {
-                        role: 'system',
-                        content:
-                            "Don't talk about the FEN unless the user asks about it. Only provide insight about the game. Assume the user knows what the FEN string is and what it means.",
-                    },
-                    {
-                        role: 'system',
-                        content:
-                            'You can provide insights about the game, suggest moves, and answer questions about chess.',
-                    },
-                    {
-                        role: 'system',
-                        content:
-                            'You can also ask questions to the user to gain more insight into the position.',
-                    },
-                    {
-                        role: 'system',
-                        content:
-                            'You can also provide general advice about chess.',
-                    },
-                    {
-                        role: 'user',
-                        content:
-                            'Assume the user is intermediate chess player that knows what the FEN string is and what it means.',
-                    },
-                    { role: 'user', content: 'The fen string is: ' + fen },
-                    {
-                        role: 'user',
-                        content:
-                            "Don't talk about the FEN unless I ask about it. Only provide insight about the game.",
-                    },
-                    { role: 'user', content: message },
-                ],
-                temperature: 0.8,
-                max_tokens: -1,
-                stream: true,
-            };
-
-            const response = await fetch(
-                'http://localhost:1234/v1/chat/completions',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(body),
+            const response = await fetch('/api/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
                 },
-            );
+                body: JSON.stringify({ message, fen }),
+            }); 
 
-            const reader = response.body?.getReader();
+            const data = await response.text();
 
-            if (!reader) {
-                throw new Error('Response body is not readable');
-            }
+            console.log('Data:', data);
 
-            while (true) {
-                const { done, value } = await reader.read();
-                if (done) {
-                    setGenerating(false);
-                    break;
-                }
-
-                // Convert the stream chunk to text
-                const text = new TextDecoder().decode(value);
-
-                const jsonObjectString = text.substring(text.indexOf('{'));
-
-                // Handle the stream data (e.g., update UI)
-                console.log(text);
-
-                try {
-                    const data = JSON.parse(jsonObjectString);
-
-                    // Handle the parsed JSON object (e.g., update UI)
-                    console.log(data);
-
-                    if (data && data.choices) {
-                        data.choices.forEach((choice: any) => {
-                            const newToken = choice.delta.content;
-                            setCoachMessage(
-                                (prevCoachMessage) =>
-                                    prevCoachMessage + newToken,
-                            );
-                        });
-                    }
-                } catch (error) {
-                    console.error('Error parsing JSON:', error);
-                    // Optionally handle the error, e.g., retrying or logging
-                }
-            }
+            setCoachMessage(data);
+            
+           
         } catch (error) {
             console.error('Error:', error);
             alert('Error: ' + error);
